@@ -36,7 +36,7 @@ devtools::install_github("masurp/ggmirt")
 
 ### Usage
 
-```{r, message=F, warning = F, fig.height=12, fig.width=10}
+```{r, message=F, warning = F, fig.height=8, fig.width=7}
 # Load packages
 library(mirt)
 library(ggmirt)
