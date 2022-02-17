@@ -15,6 +15,12 @@ knitr::opts_chunk$set(
 ```
 
 
+<div style = "padding-top:1em; padding-bottom: 0.5em;">
+<img src="inst/figures/logo.png" width = 135 align="right" />
+</div>
+
+
+
 # ggmirt
 
 This package provides convenient plotting functions to extend the great package "mirt" with ggplot-based plotting functions. Additionally, it includes some additional summary functions.
@@ -39,10 +45,10 @@ library(ggmirt)
 data <- expand.table(LSAT7)
 
 # Run IRT model with mirt
-mod <- mirt(data, 1, )
+mod <- mirt(data, 1)
 
 # Use functions from the package
-itempersonMap(mod, color = "red", size = 3)
+itempersonMap(mod, color = "red", size = 4, shape = 17)
 ```
 
 
