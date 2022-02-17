@@ -52,7 +52,7 @@ personDist <- function(model,
     guides(fill = F)
   }
   
-  p + theme_minimal() + labs(x = "θ")
+  p + theme_minimal() + labs(x = expression(theta))
   
 }
 
@@ -75,7 +75,7 @@ personDens <- function(model) {
     geom_density() +
     guides(fill = F)
   
-  p + theme_minimal() + labs(x = "θ")
+  p + theme_minimal() + labs(x = expression(theta))
   
 }
 

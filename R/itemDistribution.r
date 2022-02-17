@@ -41,6 +41,6 @@ itemDist <- function(model,
     ggplot(aes(y = items, x = items.b)) + 
     geom_point(...)
   
-  p + theme_minimal() + labs(x = "θ", y = "")
+  p + theme_minimal() + labs(x = expression(theta), y = "")
 }
 

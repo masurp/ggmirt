@@ -10,8 +10,11 @@
 # ggmirt
 
 This package provides convenient plotting functions to extend the great
-package “mirt” with ggplot-based plotting functions. Additionally, it
-includes some additional summary functions.
+package “mirt” with ggplot-based plotting functions. Although the `mirt`
+includes possibilites to plot various aspects relevant to understanding
+IRT analyses (e.g., item plots, trace-plots, etc.), it does not employ
+ggplot. This package provides some functions to recreate such plots with
+ggplot2.
 
 ### Installation
 
