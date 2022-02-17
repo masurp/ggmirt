@@ -1,0 +1,23 @@
+Package: ggmirt
+Title: Additional plotting and summary functions for IRT analyses with mirt
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Philipp K.",
+           family = "Masur",
+           role = c("aut", "cre"),
+           email = "phil.masur@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0003-3065-7305"))
+Description: This package provides convenient plotting functions to extend the great package "mirt" with ggplot-based plotting functions. Additionally, it includes some additional summary functions.
+License: GPL-3
+Imports:
+  mirt,
+  dplyr,
+  ggplot2,
+  GGally,
+  cowplot,
+Suggests:
+  tidyverse
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
