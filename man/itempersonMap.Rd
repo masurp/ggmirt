@@ -36,7 +36,7 @@ This function takes a fitted mirt-model and visualizes and plots item-person-map
 library(mirt)
 library(ggmirt)
 data <- expand.table(LSAT7)
-(mod <- mirt(data, 1,))
+(mod <- mirt(data, 1))
 
 itempersonMap(mod, 
               limits = c(-3, 3), 

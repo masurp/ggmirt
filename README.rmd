@@ -36,7 +36,7 @@ devtools::install_github("masurp/ggmirt")
 
 ### Usage
 
-```{r, message=F, warning = F, fig.height=8, fig.width=7}
+```{r, message=F, warning = F, fig.width=7, fig.height=8.5}
 # Load packages
 library(mirt)
 library(ggmirt)
@@ -47,8 +47,14 @@ data <- expand.table(LSAT7)
 # Run IRT model with mirt
 mod <- mirt(data, 1)
 
-# Use functions from the package
+# Plot item-person map
 itempersonMap(mod, color = "red", size = 4, shape = 17)
+```
+
+
+```{r, message=F, warning = F}
+# Plot trace lines (item characteristic curves)
+tracePlot(mod, data)
 ```
 
 
