@@ -10,13 +10,14 @@ Authors@R:
 Description: This package provides convenient plotting functions to extend the great package "mirt" with ggplot-based plotting functions. Additionally, it includes some additional summary functions.
 License: GPL-3
 Imports:
-  mirt,
-  dplyr,
-  ggplot2,
-  GGally,
-  cowplot,
+    mirt,
+    magrittr,
+    dplyr,
+    ggplot2,
+    GGally,
+    cowplot,
 Suggests:
-  tidyverse
+    tidyverse
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

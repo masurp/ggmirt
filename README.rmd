@@ -1,0 +1,47 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  fig.retina = 2
+)
+```
+
+
+# ggmirt
+
+This package provides convenient plotting functions to extend the great package "mirt" with ggplot-based plotting functions. Additionally, it includes some additional summary functions.
+
+
+### Installation
+
+``` r
+# install.packages("devtools")
+devtools::install_github("masurp/ggmirt")
+```
+
+
+### Usage
+
+```{r, message=F, warning = F, fig.height=12, fig.width=10}
+# Load packages
+library(mirt)
+library(ggmirt)
+
+# Get some data
+data <- expand.table(LSAT7)
+
+# Run IRT model with mirt
+mod <- mirt(data, 1)
+
+# Use functions from the package
+itempersonMap(mod, color = "red", size = 3)
+```
+

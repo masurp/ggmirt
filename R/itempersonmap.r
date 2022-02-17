@@ -4,87 +4,48 @@
 #' 
 #' 
 #' @param model an object of class `SingleGroupClass` returned by the function `mirt()`. 
-#' @param bin_color color of the bins and points in the plot
-#' @param no_bins number of bins to be displayed
-#' @param title_left title of the item-person-map on the left. 
-#' @param title_right title of the scales properties on the left (defaults to none).  
-#' @param scale_prop logical value indicating whether scale properties should be plotted at all.
+#' @param limits range to be shown on the x-axis
+#' @param title title for the plot (defaults to "Item-Person-Map")
+#' @param margin margins around the top figure. Sometimes one might want to adjust this.
+#' @param theme any ggplot theme. 
+#' @param ... any argument passed to `geom_point()`.
 #'
-#' @return a ggplot object.
-#' 
+#' @return a plot grid as returned by `cowplot::plot_grid()`
+#' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import mirt
 #' @export
 #'
 #' @examples
 #' library(mirt)
+#' library(ggmirt)
 #' data <- expand.table(LSAT7)
-#' (mod1 <- mirt(data, 1))
+#' (mod <- mirt(data, 1,))
 #' 
-#' itemperson_map(mod1, no_bins = 10)
+#' itempersonMap(mod, 
+#'               limits = c(-3, 3), 
+#'               color = "red", 
+#'               theme = theme_bw(), 
+#'               shape = 17)
 #'
-itemperson_map <- function(model, 
-                           bin_color = "#0b66ff", 
-                           no_bins = 45,
-                           title_left = "Item-Person-Map", 
-                           title_right = "",
-                           scale_prop = TRUE) {
+itempersonMap <- function(model,
+                          limits = c(-4,4),
+                          title = "Item-Person-Map",
+                          margin = c(1,0,-1.5,0),
+                          theme = theme_minimal(),
+                          ...) {
   
-  item.params <- coef(model, IRTpars = TRUE, simplify = TRUE) %>%
-    as.data.frame %>%
-    rownames_to_column("items") 
-  person.params <- fscores(model, QMC = TRUE) %>%
-    as.data.frame()
+  p1 <- personDist(model) + xlim(limits) + theme + theme(plot.margin = unit(margin,"cm"))
+  p2 <- itemDist(model, ...) + xlim(limits) + theme
   
   
-  p1a <- ggplot(person.params, aes(x = F1)) +
-    geom_histogram(bins = no_bins, color = "white", fill = bin_color) +
-    scale_x_continuous(breaks = c(-4, -2, 0, 2, 4), limits = c(-4, 4)) +
-    theme_minimal() +
-    theme(plot.margin=unit(c(1,0,0,0),"cm"),
-          axis.text = element_text(color = "black"),
-          axis.ticks = element_line(color = "black"),
-          axis.ticks.length = unit(2.3, "mm"),
-          panel.grid = element_blank(),
-          panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-    labs(x = "θ", y = "", title = "")
-  
-  p1b <- item.params %>%
-    mutate(items = fct_reorder(items, items.b)) %>%
-    ggplot(aes(y = items, x = items.b)) +
-    geom_point(color = bin_color) +
-    geom_text(aes(label = items), nudge_x = .75, color = "grey", size = 2, check_overlap = T) +
-    scale_x_continuous(breaks = c(-4, -2, 0, 2, 4), limits = c(-4, 4)) +
-    theme_minimal() +
-    theme(panel.grid = element_blank(),
-          axis.text.y = element_blank(),
-          axis.text.x = element_text(color = "black"),
-          axis.ticks.x = element_line(color = "black"),
-          axis.ticks.length.x = unit(2.3, "mm"),
-          plot.margin=unit(c(-3,0,0,0),"cm"),
-          panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-    labs(x = "θ", y = "")
-  
-  
-  
-  p <- cowplot::plot_grid(p1a, p1b,
-                          labels = c(title_left, title_right),
+  p <- cowplot::plot_grid(p1, p2,
+                          labels = c(title, ""),
                           nrow = 2,
-                          rel_heights = c(1.6,3.4),
+                          rel_heights = c(1.5,2.5),
                           align = "hv",
                           axis = "tlbr")
-  
-  if(isTRUE(scale_prop)) {
-    
-    p2a <- plot(model, type = 'score', theta_lim = c(-4.5, 4), main = "Scale Characteristic Curve")
-    p2b <- plot(model, type = 'infoSE', theta_lim = c(-4.5, 4), main = "Scale information and conditional standard errors")
-    p2c <- plot(model, type = 'rxx', theta_lim = c(-4.5, 4), main = "Marginal Reliability")
-    
-    p <- ggdraw() +
-      draw_plot(p, x = 0, y = 0.025, width = .50, height = .96) +
-      draw_plot(p2a, x = .52, y = .66, width = .465, height = .33) +
-      draw_plot(p2b, x = .52, y = .33, width = .48, height = 0.33) +
-      draw_plot(p2c, x = .52, y = 0, width = .465, height = 0.32) 
-    
-  }
   
   return(p)
 }
