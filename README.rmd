@@ -39,9 +39,16 @@ library(ggmirt)
 data <- expand.table(LSAT7)
 
 # Run IRT model with mirt
-mod <- mirt(data, 1)
+mod <- mirt(data, 1, )
 
 # Use functions from the package
 itempersonMap(mod, color = "red", size = 3)
 ```
 
+
+
+### How to cite this package
+
+```{r}
+citation("ggmirt")
+```

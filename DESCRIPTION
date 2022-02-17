@@ -1,5 +1,5 @@
 Package: ggmirt
-Title: Additional plotting and summary functions for IRT analyses with mirt
+Title: Plotting functions to extend "mirt" for IRT analyses
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Philipp K.",
@@ -13,9 +13,8 @@ Imports:
     mirt,
     magrittr,
     dplyr,
-    ggplot2,
-    GGally,
-    cowplot,
+    tidyr,
+    ggplot2
 Suggests:
     tidyverse
 Encoding: UTF-8
