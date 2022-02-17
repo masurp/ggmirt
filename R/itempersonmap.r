@@ -31,17 +31,16 @@
 #'
 itempersonMap <- function(model,
                           limits = c(-4,4),
-                          title = "Item-Person-Map",
+                          title = "Item Person Map",
                           margin = c(1,0,-1.5,0),
                           theme = theme_minimal(),
                           ...) {
   
-  p1 <- personDist(model) + xlim(limits) + theme + theme(plot.margin = unit(margin,"cm"))
+  p1 <- personDist(model) + xlim(limits) + theme + theme(plot.margin = unit(margin,"cm")) + labs(title = title)
   p2 <- itemDist(model, ...) + xlim(limits) + theme
   
   
   p <- cowplot::plot_grid(p1, p2,
-                          labels = c(title, ""),
                           nrow = 2,
                           rel_heights = c(1.5,2.5),
                           align = "hv",

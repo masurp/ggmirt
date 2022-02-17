@@ -7,7 +7,7 @@
 itempersonMap(
   model,
   limits = c(-4, 4),
-  title = "Item-Person-Map",
+  title = "Item Person Map",
   margin = c(1, 0, -1.5, 0),
   theme = theme_minimal(),
   ...
