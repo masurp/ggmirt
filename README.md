@@ -9,12 +9,26 @@
 
 # ggmirt
 
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ggmirt)](https://CRAN.R-project.org/package=ggmirt)
+<!-- badges: end -->
+
 This package provides convenient plotting functions to extend the great
 package “mirt” with ggplot-based plotting functions. Although the `mirt`
 includes possibilites to plot various aspects relevant to understanding
 IRT analyses (e.g., item plots, trace-plots, etc.), it does not employ
 ggplot. This package provides some functions to recreate such plots with
 ggplot2.
+
+**Please note:** This package is still under development. It is
+currently rather a place where I dump some functions that I use often,
+but I have not fully tested them under different scenarios and with
+different type of models. If you are interested in contributing, feel
+free to reach out.
 
 ### Installation
 
@@ -49,6 +63,13 @@ tracePlot(mod, data)
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+``` r
+# Plot trace lines (item characteristic curves)
+tracePlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ### How to cite this package
 
