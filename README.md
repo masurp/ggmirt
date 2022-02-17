@@ -71,6 +71,13 @@ tracePlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
+``` r
+# Plot test information curves
+testInfoPlot(mod, theta_range = seq(-5,5, by = .1))
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
 ### How to cite this package
 
 ``` r

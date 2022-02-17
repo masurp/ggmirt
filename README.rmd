@@ -71,6 +71,12 @@ tracePlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
 ```
 
 
+```{r, message=F, warning = F}
+# Plot test information curves
+testInfoPlot(mod, theta_range = seq(-5,5, by = .1))
+```
+
+
 
 ### How to cite this package
 
