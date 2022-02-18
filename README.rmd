@@ -67,7 +67,7 @@ tracePlot(mod, data)
 
 ```{r, message=F, warning = F}
 # Plot trace lines (item characteristic curves)
-tracePlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
+itemInfoPlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
 ```
 
 

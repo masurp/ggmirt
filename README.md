@@ -69,7 +69,7 @@ tracePlot(mod, data)
 
 ``` r
 # Plot trace lines (item characteristic curves)
-tracePlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
+itemInfoPlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
