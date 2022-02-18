@@ -77,6 +77,12 @@ testInfoPlot(mod, theta_range = seq(-5,5, by = .1))
 ```
 
 
+```{r, message=F, warning = F}
+# Plot item infit and outfit statistics
+itemfitPlot(mod)
+```
+
+
 
 ### How to cite this package
 

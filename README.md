@@ -81,6 +81,13 @@ testInfoPlot(mod, theta_range = seq(-5,5, by = .1))
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
+``` r
+# Plot item infit and outfit statistics
+itemfitPlot(mod)
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+
 ### How to cite this package
 
 ``` r
