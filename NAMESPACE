@@ -2,8 +2,10 @@
 
 export("%>%")
 export(itemDist)
+export(itemfitPlot)
 export(itempersonMap)
 export(personDist)
+export(personfitPlot)
 export(reliPlot)
 export(testInfoPlot)
 export(tracePlot)
