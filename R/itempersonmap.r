@@ -7,6 +7,7 @@
 #' @param limits range to be shown on the x-axis
 #' @param title title for the plot (defaults to "Item-Person-Map")
 #' @param margin margins around the top figure. Sometimes one might want to adjust this.
+#' @param density logical value indicating whether a smoothed density curve or a standard histogram should be plotted.
 #' @param theme any ggplot theme. 
 #' @param ... any argument passed to `geom_point()`.
 #'
@@ -33,10 +34,11 @@ itempersonMap <- function(model,
                           limits = c(-4,4),
                           title = "Item Person Map",
                           margin = c(1,0,-1.5,0),
+                          density = FALSE,
                           theme = theme_minimal(),
                           ...) {
   
-  p1 <- personDist(model) + xlim(limits) + theme + theme(plot.margin = unit(margin,"cm")) + labs(title = title)
+  p1 <- personDist(model, density = density) + xlim(limits) + theme + theme(plot.margin = unit(margin,"cm")) + labs(title = title)
   p2 <- itemDist(model, ...) + xlim(limits) + theme
   
   

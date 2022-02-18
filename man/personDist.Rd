@@ -4,10 +4,12 @@
 \alias{personDist}
 \title{Person parameter distribution}
 \usage{
-personDist(model, bins = 35)
+personDist(model, density = FALSE, bins = 35)
 }
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
+
+\item{density}{logical value indicating whether a smoothed density curve or a standard histogram should be plotted.}
 
 \item{bins}{number of bins to be plotted in the histogram}
 }
@@ -30,7 +32,7 @@ data <- expand.table(LSAT7)
 
 # Simple plot
 personDist(mod)
-personDens(mod)
+personDist(mod, density = TRUE)
 
 # Customized plot
 personDist(mod, 10) +

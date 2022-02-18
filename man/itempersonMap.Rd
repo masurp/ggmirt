@@ -9,6 +9,7 @@ itempersonMap(
   limits = c(-4, 4),
   title = "Item Person Map",
   margin = c(1, 0, -1.5, 0),
+  density = FALSE,
   theme = theme_minimal(),
   ...
 )
@@ -21,6 +22,8 @@ itempersonMap(
 \item{title}{title for the plot (defaults to "Item-Person-Map")}
 
 \item{margin}{margins around the top figure. Sometimes one might want to adjust this.}
+
+\item{density}{logical value indicating whether a smoothed density curve or a standard histogram should be plotted.}
 
 \item{theme}{any ggplot theme.}
 
