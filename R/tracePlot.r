@@ -7,7 +7,7 @@
 #' @param data the data frame used to estimate the IRT model.
 #' @param theta_range range to be shown on the x-axis
 #' @param title title for the plot (defaults to "Item Characteristic Curves")
-#' @param facet Should all items be shown in one plot, or each item received its individal facet?
+#' @param facet Should all items be shown in one plot, or each item received its individual facet?
 #'
 #' @return a ggplot
 #' @import ggplot2
