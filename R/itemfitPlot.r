@@ -10,6 +10,11 @@
 #' @param title title for the plot (defaults to "Item Infit and Outfit Statistics")
 #'
 #' @return a ggplot
+#' 
+#' @references \itemize{
+#'  \item Linacre JM. (2002). What do Infit and Outfit, Mean-square and Standardized mean? Rasch Measurement Transactions, 16(2), p.878. https://www.rasch.org/rmt/rmt162f.htm
+#' }
+#' 
 #' @import ggplot2
 #' @import dplyr
 #' @import tidyr

@@ -39,3 +39,8 @@ data <- expand.table(LSAT7)
 itemfitPlot(mod, fit_stats = "infit")
 
 }
+\references{
+\itemize{
+\item Linacre JM. (2002). What do Infit and Outfit, Mean-square and Standardized mean? Rasch Measurement Transactions, 16(2), p.878. https://www.rasch.org/rmt/rmt162f.htm
+}
+}
