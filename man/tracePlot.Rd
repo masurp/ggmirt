@@ -21,7 +21,7 @@ tracePlot(
 
 \item{title}{title for the plot (defaults to "Item Characteristic Curves")}
 
-\item{facet}{Should all items be shown in one plot, or each item received its individal facet?}
+\item{facet}{Should all items be shown in one plot, or each item received its individual facet?}
 }
 \value{
 a ggplot
