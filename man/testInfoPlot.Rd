@@ -6,7 +6,7 @@
 \usage{
 testInfoPlot(
   model,
-  theta_range = seq(-4, 4, 0.01),
+  theta_range = c(-4, 4),
   adj_factor = 3.5,
   title = "Test Information Curve"
 )

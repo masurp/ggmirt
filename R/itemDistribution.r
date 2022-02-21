@@ -30,6 +30,7 @@
 #' itemDist(mod, size = 3, shape = 17, color = "blue")
 #' 
 itemDist <- function(model,
+                     theta_range = c(-4, 4),
                      ...) {
   
   item.params <- mirt::coef(mod, IRTpars = TRUE, simplify = TRUE) %>%
@@ -41,6 +42,6 @@ itemDist <- function(model,
     ggplot(aes(y = items, x = items.b)) + 
     geom_point(...)
   
-  p + theme_minimal() + labs(x = expression(theta), y = "")
+  p + xlim(theta_range) + theme_minimal() + labs(x = expression(theta), y = "")
 }
 

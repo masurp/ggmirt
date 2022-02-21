@@ -4,7 +4,7 @@
 \alias{summaryPlot}
 \title{A quick summary of IRT analyses}
 \usage{
-summaryPlot(model, data)
+summaryPlot(model, data, theta_range = c(-4, 4), adj_factor = 0.05)
 }
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
@@ -23,6 +23,6 @@ library(ggmirt)
 data <- expand.table(LSAT7)
 (mod <- mirt(data, 1))
 
-summaryPlot(mod, data = data)
+summaryPlot(mod, data = data, theta_range = c(-4.5, 3.5), adj_factor = 3.5)
 
 }

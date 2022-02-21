@@ -7,7 +7,7 @@
 reliPlot(
   model,
   color = "blue",
-  theta_range = seq(-4, 4, 0.01),
+  theta_range = c(-4, 4),
   title = "Conditional reliability"
 )
 }

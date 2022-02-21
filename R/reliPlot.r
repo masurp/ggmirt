@@ -17,8 +17,10 @@
 #'
 reliPlot <- function(model, 
                      color = "blue",
-                     theta_range = seq(-4,4,.01), 
+                     theta_range = c(-4,4), 
                      title = "Conditional reliability") {
+  
+  theta_range = seq(theta_range[1], theta_range[2], by = .01)
   
   theta <- matrix(theta_range)
   information <- testinfo(mod, theta)

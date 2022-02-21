@@ -18,14 +18,16 @@
 #' data <- expand.table(LSAT7)
 #' (mod <- mirt(data, 1))
 #' 
-#' summaryPlot(mod, data = data)
+#' summaryPlot(mod, data = data, theta_range = c(-4.5, 3.5), adj_factor = 3.5)
 #'
-summaryPlot <- function(model, data) {
+summaryPlot <- function(model, data,
+                        theta_range = c(-4, 4),
+                        adj_factor = .05) {
   
-  p1 <- itempersonMap(model, shape = 17, color = "red")
-  p2 <- tracePlot(model, data = data, facet = F)
-  p3 <- testInfoPlot(model)
-  p4 <- reliPlot(model, color = "red")
+  p1 <- itempersonMap(model, theta_range = theta_range, shape = 17, color = "red")
+  p2 <- tracePlot(model, data = data, theta_range = theta_range, facet = FALSE)
+  p3 <- testInfoPlot(model, theta_range = theta_range, adj_factor = adj_factor)
+  p4 <- reliPlot(model, theta_range = theta_range, color = "red")
   
   
   p <- cowplot::ggdraw() +

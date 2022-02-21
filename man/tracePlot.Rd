@@ -7,9 +7,10 @@
 tracePlot(
   model,
   data,
-  theta_range = seq(-4, 4, by = 0.1),
+  theta_range = c(-4, 4),
   title = "Item Characteristics Curves",
-  facet = T
+  facet = TRUE,
+  legend = FALSE
 )
 }
 \arguments{
@@ -36,6 +37,6 @@ data <- expand.table(LSAT7)
 (mod <- mirt(data, 1))
 
 tracePlot(mod, data)
-tracePlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
+tracePlot(mod, data, theta_range = c(-5,5), facet = F, legend = T)
 
 }

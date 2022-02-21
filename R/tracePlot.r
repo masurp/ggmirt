@@ -23,12 +23,15 @@
 #' (mod <- mirt(data, 1))
 #' 
 #' tracePlot(mod, data)
-#' tracePlot(mod, data, theta_range = seq(-5,5, by = .1), facet = F)
+#' tracePlot(mod, data, theta_range = c(-5,5), facet = F, legend = T)
 #'
 tracePlot <- function(model, data, 
-                      theta_range = seq(-4,4, by = .1),
+                      theta_range = c(-4,4),
                       title = "Item Characteristics Curves",
-                      facet = T) {
+                      facet = TRUE,
+                      legend = FALSE) {
+  
+  theta_range = seq(theta_range[1], theta_range[2], by = .01)
   
   trace <- NULL
   for(i in 1:length(data)){
@@ -46,15 +49,19 @@ tracePlot <- function(model, data,
   
   # final plot
   if(isFALSE(facet)) {
-  ggplot(d, aes(theta, P.1, colour = item)) + 
-  geom_line() + 
-  labs(x = expression(theta), 
-       y = expression(P(theta)), 
-       title = title) +
-  theme_minimal()
+  p <- ggplot(d, aes(theta, P.1, colour = item)) + 
+    geom_line() + 
+    labs(x = expression(theta), 
+         y = expression(P(theta)), 
+         title = title) +
+    theme_minimal()
+  
+  if(isFALSE(legend)) {
+   p <- p + guides(color = FALSE)
+  }
     
   } else {
-    ggplot(d, aes(theta, P.1)) + 
+   p <- ggplot(d, aes(theta, P.1)) + 
       geom_line() + 
       facet_wrap(~item) +
       labs(x = expression(theta), 
@@ -62,4 +69,6 @@ tracePlot <- function(model, data,
            title = title) +
       theme_minimal()
   }
+  
+  return(p)
 }

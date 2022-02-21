@@ -29,10 +29,10 @@
 #' personDist(mod, density = TRUE)
 #' 
 #' # Customized plot
-#' personDist(mod, 10) +
-#'   xlim(-3, 3) +
+#' personDist(mod, theta_range = c(-3, 3), bins = 10) +
 #'   theme_classic()
 personDist <- function(model, 
+                       theta_range = c(-4, 4),
                        density = FALSE,
                        bins = 35) {
   
@@ -62,6 +62,6 @@ personDist <- function(model,
   }
 
   
-  p + theme_minimal() + labs(x = expression(theta))
+  p + xlim(theta_range) + theme_minimal() + labs(x = expression(theta))
   
 }

@@ -6,7 +6,7 @@
 \usage{
 itempersonMap(
   model,
-  limits = c(-4, 4),
+  theta_range = c(-4, 4),
   title = "Item Person Map",
   margin = c(1, 0, -1.5, 0),
   density = FALSE,
@@ -17,8 +17,6 @@ itempersonMap(
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
 
-\item{limits}{range to be shown on the x-axis}
-
 \item{title}{title for the plot (defaults to "Item-Person-Map")}
 
 \item{margin}{margins around the top figure. Sometimes one might want to adjust this.}
@@ -28,6 +26,8 @@ itempersonMap(
 \item{theme}{any ggplot theme.}
 
 \item{...}{any argument passed to \code{geom_point()}.}
+
+\item{limits}{range to be shown on the x-axis}
 }
 \value{
 a plot grid as returned by \code{cowplot::plot_grid()}

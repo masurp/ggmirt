@@ -24,10 +24,12 @@
 #' testInfoPlot(mod)
 #'
 testInfoPlot <- function(model, 
-                         theta_range = seq(-4,4,.01), 
+                         theta_range = c(-4,4), 
                          adj_factor = 3.5,
                          title = "Test Information Curve") {
 
+theta_range = seq(theta_range[1], theta_range[2], by = .01)
+  
 Theta <- matrix(theta_range)
 information <- testinfo(model, Theta)
 SE <- 1/(sqrt(information))

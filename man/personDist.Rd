@@ -4,7 +4,7 @@
 \alias{personDist}
 \title{Person parameter distribution}
 \usage{
-personDist(model, density = FALSE, bins = 35)
+personDist(model, theta_range = c(-4, 4), density = FALSE, bins = 35)
 }
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
@@ -35,7 +35,6 @@ personDist(mod)
 personDist(mod, density = TRUE)
 
 # Customized plot
-personDist(mod, 10) +
-  xlim(-3, 3) +
+personDist(mod, theta_range = c(-3, 3), bins = 10) +
   theme_classic()
 }

@@ -4,7 +4,7 @@
 \alias{itemDist}
 \title{Item difficulty distribution}
 \usage{
-itemDist(model, ...)
+itemDist(model, theta_range = c(-4, 4), ...)
 }
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}

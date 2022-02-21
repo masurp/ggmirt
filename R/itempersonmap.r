@@ -31,15 +31,19 @@
 #'               shape = 17)
 #'
 itempersonMap <- function(model,
-                          limits = c(-4,4),
+                          theta_range = c(-4,4),
                           title = "Item Person Map",
                           margin = c(1,0,-1.5,0),
                           density = FALSE,
                           theme = theme_minimal(),
                           ...) {
   
-  p1 <- personDist(model, density = density) + xlim(limits) + theme + theme(plot.margin = unit(margin,"cm")) + labs(title = title)
-  p2 <- itemDist(model, ...) + xlim(limits) + theme
+  p1 <- personDist(model, theta_range = theta_range, density = density) + 
+    theme + 
+    theme(plot.margin = unit(margin,"cm")) + 
+    labs(title = title)
+  p2 <- itemDist(model, theta_range = theta_range, ...) + 
+    theme
   
   
   p <- cowplot::plot_grid(p1, p2,
