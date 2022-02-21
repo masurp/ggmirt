@@ -28,7 +28,9 @@ itemInfoPlot <- function(model,
                          data, 
                          facet = FALSE,
                          title = "Item Information Curves",
-                         theta_range = seq(-5,4,.01)) {
+                         theta_range = c(-4,4)) {
+  
+  theta_range = seq(theta_range[1], theta_range[2], by = .01)
   
   test <- NULL
   for(i in 1:length(data)){
@@ -48,7 +50,8 @@ itemInfoPlot <- function(model,
       geom_line() + 
       labs(x = expression(theta), 
            y = expression(I(theta)), 
-           title = title) +
+           title = title,
+           color = "Item") +
       theme_minimal()
     
   } else {
