@@ -69,31 +69,43 @@ tracePlot(mod, data)
 
 ``` r
 # Plot trace lines (item characteristic curves)
-itemInfoPlot(mod, data, theta_range = c(-5,4), facet = FALSE)
+itemInfoPlot(mod, data)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
-# Plot test information curves
-testInfoPlot(mod, theta_range = c(-5,5))
+# Plot scale characteristic curve
+scaleCharPlot(mod)
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+``` r
+# Plot test information curves
+testInfoPlot(mod)
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ``` r
 # Plot item infit and outfit statistics
 itemfitPlot(mod)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+
+``` r
+# Plot person fit
+personfitPlot(mod)
+```
+
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 ### How to cite this package
 
 ``` r
 citation("ggmirt")
-#> Warning in citation("ggmirt"): no date field in DESCRIPTION file of package
-#> 'ggmirt'
 #> 
 #> To cite package 'ggmirt' in publications use:
 #> 

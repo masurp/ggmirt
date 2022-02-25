@@ -67,13 +67,19 @@ tracePlot(mod, data)
 
 ```{r, message=F, warning = F}
 # Plot trace lines (item characteristic curves)
-itemInfoPlot(mod, data, theta_range = c(-5,4), facet = FALSE)
+itemInfoPlot(mod, data)
+```
+
+
+```{r, message=F, warning = F}
+# Plot scale characteristic curve
+scaleCharPlot(mod)
 ```
 
 
 ```{r, message=F, warning = F}
 # Plot test information curves
-testInfoPlot(mod, theta_range = c(-5,5))
+testInfoPlot(mod)
 ```
 
 
@@ -83,10 +89,15 @@ itemfitPlot(mod)
 ```
 
 
+```{r, message=F, warning = F}
+# Plot person fit
+personfitPlot(mod)
+```
+
 
 ### How to cite this package
 
-```{r}
+```{r, message=F, warning = F}
 citation("ggmirt")
 ```
 
