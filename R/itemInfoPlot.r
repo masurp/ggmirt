@@ -28,7 +28,8 @@ itemInfoPlot <- function(model,
                          data, 
                          facet = FALSE,
                          title = "Item Information Curves",
-                         theta_range = c(-4,4)) {
+                         theta_range = c(-4,4),
+                         legend = FALSE) {
   
   theta_range = seq(theta_range[1], theta_range[2], by = .01)
   
@@ -46,7 +47,7 @@ itemInfoPlot <- function(model,
   
   # final plot
   if(isFALSE(facet)) {
-    ggplot(test, aes(theta, value, colour = key)) + 
+    p <- ggplot(test, aes(theta, value, colour = key)) + 
       geom_line() + 
       labs(x = expression(theta), 
            y = expression(I(theta)), 
@@ -54,8 +55,12 @@ itemInfoPlot <- function(model,
            color = "Item") +
       theme_minimal()
     
+  if(isFALSE(legend)) {
+    p <- p + guides(color = FALSE)
+  }
+    
   } else {
-    ggplot(test, aes(theta, value)) + 
+   p <- ggplot(test, aes(theta, value)) + 
       geom_line() + 
       facet_wrap(~key) +
       labs(x = expression(theta), 
@@ -63,6 +68,7 @@ itemInfoPlot <- function(model,
            title = title) +
       theme_minimal()
   }
+  return(p)
 }
 
 
