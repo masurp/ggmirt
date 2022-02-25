@@ -9,7 +9,8 @@ itemInfoPlot(
   data,
   facet = FALSE,
   title = "Item Information Curves",
-  theta_range = c(-4, 4)
+  theta_range = c(-4, 4),
+  legend = FALSE
 )
 }
 \arguments{

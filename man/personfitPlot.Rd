@@ -25,7 +25,7 @@ library(ggmirt)
 data <- expand.table(LSAT7)
 (mod <- mirt(data, 1))
 
-personfitPlot(mod)
+personfitPlot(mod, std = F)
 
 }
 \references{
