@@ -33,7 +33,7 @@ itemDist <- function(model,
                      theta_range = c(-4, 4),
                      ...) {
   
-  item.params <- mirt::coef(mod, IRTpars = TRUE, simplify = TRUE) %>%
+  item.params <- mirt::coef(model, IRTpars = TRUE, simplify = TRUE) %>%
     as.data.frame %>%
     tibble::rownames_to_column("items") 
   
