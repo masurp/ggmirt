@@ -102,6 +102,16 @@ personfitPlot(mod)
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
+Next to individual plot functions, there is also a comprehensive
+summaryPlot()-function, which provides a lot of information about IRT
+models with just a line of code.
+
+``` r
+summaryPlot(mod, data, theta_range = c(-5, 4), adj_factor = 4)
+```
+
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+
 ### How to cite this package
 
 ``` r

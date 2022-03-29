@@ -94,6 +94,14 @@ itemfitPlot(mod)
 personfitPlot(mod)
 ```
 
+Next to individual plot functions, there is also a comprehensive summaryPlot()-function, which provides a lot of information about IRT models with just a line of code.
+
+```{r, message=F, warning = F, fig.width=8, fig.height=8}
+summaryPlot(mod, data, theta_range = c(-5, 4), adj_factor = 4)
+```
+
+
+
 
 ### How to cite this package
 
