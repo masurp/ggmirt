@@ -55,7 +55,7 @@ data <- expand.table(LSAT7)
 mod <- mirt(data, 1)
 
 # Plot item-person map
-itempersonMap(mod, color = "red", size = 4, shape = 17)
+itempersonMap(mod)
 ```
 
 
