@@ -39,13 +39,14 @@ p <- data.frame(Theta, information, SE) %>%
   gather(key, value, -Theta) %>%
   ggplot() +
   geom_line(aes(x = Theta, y = value, color = key, linetype = key)) +
-  scale_linetype_manual(values=c("dashed", "solid"))+
+  scale_linetype_manual(values=c("solid", "dashed"))+
   scale_y_continuous(sec.axis = sec_axis(~.*adj_factor, name = expression(SE(theta)))) +
   labs(x = expression(theta), y = expression(I(theta)),
        title = title) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  theme(legend.title=element_blank())
+  theme(legend.title=element_blank()) +
+  scale_color_manual(values = c("red", "darkred"))
 
 return(p)
 

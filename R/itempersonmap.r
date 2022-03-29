@@ -8,6 +8,9 @@
 #' @param title title for the plot (defaults to "Item-Person-Map")
 #' @param margin margins around the top figure. Sometimes one might want to adjust this.
 #' @param density logical value indicating whether a smoothed density curve or a standard histogram should be plotted.
+#' @param color color of the geoms, defaults to "red".
+#' @param shape can be used to change the shape of the geom, defaults to triangles (17).
+#' @param size size of the geom, default to 3.  
 #' @param theme any ggplot theme. 
 #' @param ... any argument passed to `geom_point()`.
 #'
@@ -24,17 +27,16 @@
 #' data <- expand.table(LSAT7)
 #' (mod <- mirt(data, 1))
 #' 
-#' itempersonMap(mod, 
-#'               limits = c(-3, 3), 
-#'               color = "red", 
-#'               theme = theme_bw(), 
-#'               shape = 17)
+#' itempersonMap(mod)
 #'
 itempersonMap <- function(model,
                           theta_range = c(-4,4),
                           title = "Item Person Map",
                           margin = c(1,0,-1.5,0),
                           density = FALSE,
+                          color = "red",
+                          shape = 17,
+                          size = 3,
                           theme = theme_minimal(),
                           ...) {
   
@@ -42,7 +44,7 @@ itempersonMap <- function(model,
     theme + 
     theme(plot.margin = unit(margin,"cm")) + 
     labs(title = title)
-  p2 <- itemDist(model, theta_range = theta_range, size = 3, shape = 17, color = "red", ...) + 
+  p2 <- itemDist(model, theta_range = theta_range, shape = shape, color = color, size = size, ...) + 
     theme
   
   

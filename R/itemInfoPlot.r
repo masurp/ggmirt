@@ -53,7 +53,8 @@ itemInfoPlot <- function(model,
            y = expression(I(theta)), 
            title = title,
            color = "Item") +
-      theme_minimal()
+      theme_minimal() +
+      scale_color_brewer(palette = 7)
     
   if(isFALSE(legend)) {
     p <- p + guides(color = FALSE)
@@ -66,7 +67,7 @@ itemInfoPlot <- function(model,
       labs(x = expression(theta), 
            y = expression(I(theta)), 
            title = title) +
-      theme_minimal()
+      theme_minimal() 
   }
   return(p)
 }

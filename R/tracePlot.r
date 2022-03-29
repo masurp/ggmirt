@@ -49,13 +49,14 @@ tracePlot <- function(model, data,
       separate(key, c("var", "response"), sep = ifelse(n.answers > 10, -4, -3))
     
     
-    p <-ggplot(trace, aes(x = Theta, y =  value)) +
+    p <- ggplot(trace, aes(x = Theta, y =  value)) +
       geom_line(aes(color = response)) +
       facet_wrap(~var) +
       theme_minimal() +
       labs(x = expression(theta), 
            y = expression(P(theta)), 
-           title = title)
+           title = title) +
+      scale_color_brewer(palette = 7)
     
     
   } else {
@@ -81,7 +82,8 @@ tracePlot <- function(model, data,
     labs(x = expression(theta), 
          y = expression(P(theta)), 
          title = title) +
-    theme_minimal()
+    theme_minimal() +
+    scale_color_brewer(palette = 7)
   
   if(isFALSE(legend)) {
    p <- p + guides(color = FALSE)

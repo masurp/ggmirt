@@ -10,6 +10,9 @@ itempersonMap(
   title = "Item Person Map",
   margin = c(1, 0, -1.5, 0),
   density = FALSE,
+  color = "red",
+  shape = 17,
+  size = 3,
   theme = theme_minimal(),
   ...
 )
@@ -22,6 +25,12 @@ itempersonMap(
 \item{margin}{margins around the top figure. Sometimes one might want to adjust this.}
 
 \item{density}{logical value indicating whether a smoothed density curve or a standard histogram should be plotted.}
+
+\item{color}{color of the geoms, defaults to "red".}
+
+\item{shape}{can be used to change the shape of the geom, defaults to triangles (17).}
+
+\item{size}{size of the geom, default to 3.}
 
 \item{theme}{any ggplot theme.}
 
@@ -41,10 +50,6 @@ library(ggmirt)
 data <- expand.table(LSAT7)
 (mod <- mirt(data, 1))
 
-itempersonMap(mod, 
-              limits = c(-3, 3), 
-              color = "red", 
-              theme = theme_bw(), 
-              shape = 17)
+itempersonMap(mod)
 
 }
