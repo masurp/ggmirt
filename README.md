@@ -47,11 +47,11 @@ devtools::install_github("masurp/ggmirt")
 library(mirt)
 library(ggmirt)
 
-# Get some data
-data <- expand.table(LSAT7)
+# Simulate some data
+data <- sim_irt(500, 8, seed = 123)
 
 # Run IRT model with mirt
-mod <- mirt(data, 1, verbose = FALSE)
+mod <- mirt(data, 1, itemtype = "2PL", verbose = FALSE)
 
 # Plot item-person map
 itempersonMap(mod)
@@ -82,7 +82,7 @@ scaleCharPlot(mod)
 
 ``` r
 # Plot test information curves
-testInfoPlot(mod)
+testInfoPlot(mod, adj_factor = 1.75)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
@@ -106,7 +106,7 @@ summaryPlot()-function, which provides a lot of information about IRT
 models with just a line of code.
 
 ``` r
-summaryPlot(mod, data, theta_range = c(-5, 4), adj_factor = 4)
+summaryPlot(mod, data, adj_factor = 1.75)
 ```
 
 <img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
