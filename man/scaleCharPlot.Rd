@@ -8,16 +8,17 @@ scaleCharPlot(
   model,
   theta_range = c(-4, 4),
   color = "red",
-  y.interval = NULL,
   title = "Scale Characteristic Curve"
 )
 }
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
 
-\item{title}{title for the plot (defaults to "Person Infit and Outfit Statistics")}
+\item{theta_range}{range to be shown on the x-axis}
 
-\item{std}{logical value indicating whether standardized or non-standardized infit or outfit estimates should be used (leads to different cut-off values).}
+\item{color}{color of the line}
+
+\item{title}{title for the plot (defaults to "Person Infit and Outfit Statistics")}
 }
 \value{
 a ggplot
