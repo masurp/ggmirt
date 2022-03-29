@@ -36,7 +36,7 @@ itemInfoPlot <- function(model,
   test <- NULL
   for(i in 1:length(data)){
     theta <- matrix(theta_range)
-    test[[i]] <- testinfo(mod, Theta = theta, which.items = i)
+    test[[i]] <- testinfo(model, Theta = theta, which.items = i)
   }
   
   names(test) <- paste('item', 1:length(test))
