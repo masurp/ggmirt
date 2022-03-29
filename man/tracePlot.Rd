@@ -9,6 +9,7 @@ tracePlot(
   data,
   theta_range = c(-4, 4),
   title = "Item Characteristics Curves",
+  n.answers = 5,
   facet = TRUE,
   legend = FALSE
 )
@@ -21,6 +22,8 @@ tracePlot(
 \item{theta_range}{range to be shown on the x-axis}
 
 \item{title}{title for the plot (defaults to "Item Characteristic Curves")}
+
+\item{n.answers}{In a graded response model, number of answer options (e.g., 5-point scale = 5)}
 
 \item{facet}{Should all items be shown in one plot, or each item received its individual facet?}
 }
