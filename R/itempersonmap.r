@@ -42,7 +42,7 @@ itempersonMap <- function(model,
     theme + 
     theme(plot.margin = unit(margin,"cm")) + 
     labs(title = title)
-  p2 <- itemDist(model, theta_range = theta_range, ...) + 
+  p2 <- itemDist(model, theta_range = theta_range, size = 3, shape = 17, color = "red", ...) + 
     theme
   
   
