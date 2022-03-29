@@ -23,7 +23,7 @@ reliPlot <- function(model,
   theta_range = seq(theta_range[1], theta_range[2], by = .01)
   
   theta <- matrix(theta_range)
-  information <- testinfo(mod, theta)
+  information <- testinfo(model, theta)
   SE <- 1/(sqrt(information))
   rel <- 1-SE^2
   d <- data.frame(theta, information, SE, rel)
