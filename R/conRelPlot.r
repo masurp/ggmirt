@@ -26,7 +26,7 @@
 conRelPlot <- function(model, 
                        theta_range = c(-4,4), 
                        color = "red",
-                       title = "Conditional reliability") {
+                       title = "Conditional Reliability") {
   
   # helper functions
   
