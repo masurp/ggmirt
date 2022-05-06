@@ -27,6 +27,14 @@ does not employ `ggplot2`, which provides more flexibility and
 customizability. This package provides some functions to recreate such
 plots with ggplot2.
 
+If you want to learn how to use `mirt` in combination with `ggmirt` to
+run various IRT analyses, please check out the following tutorials:
+
+-   [Item Response Theory I: 3PL, 2PL, & 1PL (Rasch)
+    models](https://github.com/ccs-amsterdam/r-course-material/blob/master/tutorials/R_test-theory_3_irt.md)
+-   [Item Response Theory II: Graded response
+    models](https://github.com/ccs-amsterdam/r-course-material/blob/master/tutorials/R_test-theory_3_irt_graded.md)
+
 **Please note:** This package is still under development. It is
 currently rather a place where I dump some functions that I use often,
 but I have not fully tested them under different scenarios and with
