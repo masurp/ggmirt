@@ -1,9 +1,10 @@
 #' A quick summary of IRT analyses
 #'
-#' This function is essentially just a wrapper around several functions in this package and produces a summary of the most important aspects of an IRT model, including an item-person-map, item characteristic curves, test information curve, and conditional reliability.
+#' This function is essentially just a wrapper around several functions in this package and produces a summary of the most important aspects of an IRT model, including an item-person-map,test information curve, scale characteristic curve, and conditional reliability.
 #' 
 #' @param model an object of class `SingleGroupClass` returned by the function `mirt()`. 
-#' @param data the data frame used to estimate the IRT model.
+#' @param theta_range range to be shown on the x-axis
+#' @param adj_factor adjustment factor for properly overlaying information and standard error.
 #'
 #' @return a plot grid as returned by `cowplot::ggdraw()`
 #' @import ggplot2
@@ -15,26 +16,57 @@
 #' @examples
 #' library(mirt)
 #' library(ggmirt)
-#' data <- expand.table(LSAT7)
-#' (mod <- mirt(data, 1))
 #' 
-#' summaryPlot(mod, data = data, theta_range = c(-4.5, 3.5), adj_factor = 3.5)
+#' # Simulate some data
+#' data <- sim_irt(500, 10, seed = 123)
+#' 
+#' # Run IRT model with mirt
+#' mod <- mirt(data, 1, itemtype = "2PL", verbose = FALSE)
+#' 
+#' summaryPlot(mod, theta_range = c(-4.5, 3.5), adj_factor = 1.5)
 #'
-summaryPlot <- function(model, data,
+summaryPlot <- function(model,
                         theta_range = c(-4, 4),
                         adj_factor = .05) {
   
-  p1 <- itempersonMap(model, theta_range = theta_range, shape = 17, color = "red")
-  p2 <- tracePlot(model, data = data, theta_range = theta_range, facet = FALSE)
-  p3 <- testInfoPlot(model, theta_range = theta_range, adj_factor = adj_factor)
-  p4 <- scaleCharPlot(model, theta_range = theta_range)
+  # Get number of items
+  J <- model@Data$nitems
   
+  # Person parameter distribution
+  p1 <- personDist(model, theta_range = theta_range) +
+    labs(title = "Item Person Map")
   
-  p <- cowplot::ggdraw() +
-    cowplot::draw_plot(p1, x = 0, y = 0.025, width = .50, height = 1) +
-    cowplot::draw_plot(p2, x = .52, y = .66, width = .465, height = .33) +
-    cowplot::draw_plot(p3, x = .52, y = .33, width = .48, height = 0.33) +
-    cowplot::draw_plot(p4, x = .52, y = 0, width = .465, height = 0.32) 
+  # Item difficulty distribution
+  p2 <- itemDist(model, theta_range = theta_range, shape = 17, color = "red") 
+  
+  # Change item labelling if no. items > 10
+  if(J > 10) {
+    p2 <- p2 +
+    geom_text(aes(label = items), nudge_x = .75, color = "darkgrey", size = 2, check_overlap = T) +
+    theme(axis.text.y = element_blank(),
+          panel.grid.major.y = element_blank())
+  }
+  
+  # Scale Characteristic Curve
+  p3 <- scaleCharPlot(model, theta_range = theta_range)
+  
+  # Test information curve
+  p4 <- testInfoPlot(model, theta_range = theta_range, adj_factor = adj_factor)
+  
+  # Conditional reliability curve
+  p5 <- conRelPlot(model, theta_range = theta_range)
+  
+  # Bind together
+  p <- ggpubr::ggarrange(ggpubr::ggarrange(p1, p2, 
+                                           ncol = 1, 
+                                           align = "hv", 
+                                           heights = c(1,2)), 
+                         ggpubr::ggarrange(p4, p3, p5, 
+                                           ncol = 1, 
+                                           align = "hv", 
+                                           heights = c(1.25, 1, 1)), 
+                         ncol = 2)
+  
   
   return(p)
   

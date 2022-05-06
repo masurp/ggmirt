@@ -4,25 +4,31 @@
 \alias{summaryPlot}
 \title{A quick summary of IRT analyses}
 \usage{
-summaryPlot(model, data, theta_range = c(-4, 4), adj_factor = 0.05)
+summaryPlot(model, theta_range = c(-4, 4), adj_factor = 0.05)
 }
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
 
-\item{data}{the data frame used to estimate the IRT model.}
+\item{theta_range}{range to be shown on the x-axis}
+
+\item{adj_factor}{adjustment factor for properly overlaying information and standard error.}
 }
 \value{
 a plot grid as returned by \code{cowplot::ggdraw()}
 }
 \description{
-This function is essentially just a wrapper around several functions in this package and produces a summary of the most important aspects of an IRT model, including an item-person-map, item characteristic curves, test information curve, and conditional reliability.
+This function is essentially just a wrapper around several functions in this package and produces a summary of the most important aspects of an IRT model, including an item-person-map,test information curve, scale characteristic curve, and conditional reliability.
 }
 \examples{
 library(mirt)
 library(ggmirt)
-data <- expand.table(LSAT7)
-(mod <- mirt(data, 1))
 
-summaryPlot(mod, data = data, theta_range = c(-4.5, 3.5), adj_factor = 3.5)
+# Simulate some data
+data <- sim_irt(500, 10, seed = 123)
+
+# Run IRT model with mirt
+mod <- mirt(data, 1, itemtype = "2PL", verbose = FALSE)
+
+summaryPlot(mod, theta_range = c(-4.5, 3.5), adj_factor = 1.5)
 
 }
