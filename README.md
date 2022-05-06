@@ -60,56 +60,63 @@ itempersonMap(mod)
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 ``` r
-# Plot trace lines (item characteristic curves)
+# Item characteristic curves
 tracePlot(mod, data)
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ``` r
-# Plot trace lines (item characteristic curves)
+# Item information curves
 itemInfoPlot(mod, data)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
-# Plot scale characteristic curve
+# Scale characteristic curve
 scaleCharPlot(mod)
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ``` r
-# Plot test information curves
+# Test information curves
 testInfoPlot(mod, adj_factor = 1.75)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ``` r
-# Plot item infit and outfit statistics
+# Item infit and outfit statistics
 itemfitPlot(mod)
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
 ``` r
-# Plot person fit
+# Person fit statisitcs
 personfitPlot(mod)
 ```
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+
+``` r
+# Conditional reliability
+conRelPlot(mod)
+```
+
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
 
 Next to individual plot functions, there is also a comprehensive
 summaryPlot()-function, which provides a lot of information about IRT
 models with just a line of code.
 
 ``` r
-summaryPlot(mod, data, adj_factor = 1.75)
+summaryPlot(mod, adj_factor = 1.75)
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
 
 ### How to cite this package
 

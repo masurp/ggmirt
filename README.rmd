@@ -60,44 +60,51 @@ itempersonMap(mod)
 
 
 ```{r, message=F, warning = F}
-# Plot trace lines (item characteristic curves)
+# Item characteristic curves
 tracePlot(mod, data)
 ```
 
 
 ```{r, message=F, warning = F}
-# Plot trace lines (item characteristic curves)
+# Item information curves
 itemInfoPlot(mod, data)
 ```
 
 
 ```{r, message=F, warning = F}
-# Plot scale characteristic curve
+# Scale characteristic curve
 scaleCharPlot(mod)
 ```
 
 
 ```{r, message=F, warning = F}
-# Plot test information curves
+# Test information curves
 testInfoPlot(mod, adj_factor = 1.75)
 ```
 
 
 ```{r, message=F, warning = F}
-# Plot item infit and outfit statistics
+# Item infit and outfit statistics
 itemfitPlot(mod)
 ```
 
 
 ```{r, message=F, warning = F}
-# Plot person fit
+# Person fit statisitcs
 personfitPlot(mod)
 ```
+
+
+```{r, message=F, warning = F}
+# Conditional reliability
+conRelPlot(mod)
+```
+
 
 Next to individual plot functions, there is also a comprehensive summaryPlot()-function, which provides a lot of information about IRT models with just a line of code.
 
 ```{r, message=F, warning = F, fig.width=8, fig.height=8}
-summaryPlot(mod, data, adj_factor = 1.75)
+summaryPlot(mod, adj_factor = 1.75)
 ```
 
 
