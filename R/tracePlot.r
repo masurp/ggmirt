@@ -4,7 +4,7 @@
 #' 
 #' 
 #' @param model an object of class `SingleGroupClass` returned by the function `mirt()`. 
-#' @param data the data frame used to estimate the IRT model.
+#' @param items numerical vector indicating which items to plot (currently does not yet work for graded response models).
 #' @param theta_range range to be shown on the x-axis
 #' @param n.answers In a graded response model, number of answer options (e.g., 5-point scale = 5)
 #' @param title title for the plot (defaults to "Item Characteristic Curves")
@@ -23,15 +23,18 @@
 #' data <- expand.table(LSAT7)
 #' (mod <- mirt(data, 1))
 #' 
-#' tracePlot(mod, data)
-#' tracePlot(mod, data, theta_range = c(-5,5), facet = F, legend = T)
+#' tracePlot(mod)
+#' tracePlot(mod, items = c(1,2,3), theta_range = c(-5,5), facet = F, legend = T)
 #'
-tracePlot <- function(model, data, 
+tracePlot <- function(model, 
+                      items = NULL,
                       theta_range = c(-4,4),
                       title = "Item Characteristics Curves",
                       n.answers = 5,
                       facet = TRUE,
                       legend = FALSE) {
+  
+  data <- model@Data$data %>% as.data.frame
   
   # Set theta range as sequence
   theta_range = seq(theta_range[1], theta_range[2], by = .01)
@@ -48,7 +51,6 @@ tracePlot <- function(model, data,
       gather(key, value, -Theta) %>%
       separate(key, c("var", "response"), sep = ifelse(n.answers > 10, -4, -3))
     
-    
     p <- ggplot(trace, aes(x = Theta, y =  value)) +
       geom_line(aes(color = response)) +
       facet_wrap(~var) +
@@ -58,7 +60,6 @@ tracePlot <- function(model, data,
            title = title) +
       scale_color_brewer(palette = 7)
     
-    
   } else {
   
   trace <- NULL
@@ -66,6 +67,10 @@ tracePlot <- function(model, data,
   extr <- extract.item(model, i)
   theta <- matrix(theta_range)
   trace[[i]] <- probtrace(extr, theta)
+  }
+  
+  if (!is.null(items)) {
+    trace <- trace[items]
   }
   
   names(trace) <- paste('item', 1:length(trace))

@@ -6,7 +6,7 @@
 \usage{
 itemInfoPlot(
   model,
-  data,
+  items = NULL,
   facet = FALSE,
   title = "Item Information Curves",
   theta_range = c(-4, 4),
@@ -16,7 +16,7 @@ itemInfoPlot(
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
 
-\item{data}{the data frame used to estimate the IRT model.}
+\item{items}{numerical vector indicating which items to plot.}
 
 \item{facet}{Should all items be shown in one plot, or each item received its individal facet?}
 
@@ -36,6 +36,6 @@ library(ggmirt)
 data <- expand.table(LSAT7)
 (mod <- mirt(data, 1))
 
-itemInfoPlot(mod, data)
+itemInfoPlot(mod)
 
 }

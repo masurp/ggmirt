@@ -4,7 +4,7 @@
 #' 
 #' 
 #' @param model an object of class `SingleGroupClass` returned by the function `mirt()`. 
-#' @param data the data frame used to estimate the IRT model.
+#' @param items numerical vector indicating which items to plot.
 #' @param facet Should all items be shown in one plot, or each item received its individal facet?
 #' @param theta_range range to be shown on the x-axis
 #' @param title title for the plot (defaults to "Item Characteristic Curves")
@@ -22,14 +22,16 @@
 #' data <- expand.table(LSAT7)
 #' (mod <- mirt(data, 1))
 #' 
-#' itemInfoPlot(mod, data)
+#' itemInfoPlot(mod)
 #'
 itemInfoPlot <- function(model,
-                         data, 
+                         items = NULL,
                          facet = FALSE,
                          title = "Item Information Curves",
                          theta_range = c(-4,4),
                          legend = FALSE) {
+  
+  data <- model@Data$data %>% as.data.frame
   
   theta_range = seq(theta_range[1], theta_range[2], by = .01)
   
@@ -37,6 +39,10 @@ itemInfoPlot <- function(model,
   for(i in 1:length(data)){
     theta <- matrix(theta_range)
     test[[i]] <- testinfo(model, Theta = theta, which.items = i)
+  }
+  
+  if (!is.null(items)) {
+    test <- test[items]
   }
   
   names(test) <- paste('item', 1:length(test))

@@ -6,7 +6,7 @@
 \usage{
 tracePlot(
   model,
-  data,
+  items = NULL,
   theta_range = c(-4, 4),
   title = "Item Characteristics Curves",
   n.answers = 5,
@@ -17,7 +17,7 @@ tracePlot(
 \arguments{
 \item{model}{an object of class \code{SingleGroupClass} returned by the function \code{mirt()}.}
 
-\item{data}{the data frame used to estimate the IRT model.}
+\item{items}{numerical vector indicating which items to plot (currently does not yet work for graded response models).}
 
 \item{theta_range}{range to be shown on the x-axis}
 
@@ -39,7 +39,7 @@ library(ggmirt)
 data <- expand.table(LSAT7)
 (mod <- mirt(data, 1))
 
-tracePlot(mod, data)
-tracePlot(mod, data, theta_range = c(-5,5), facet = F, legend = T)
+tracePlot(mod)
+tracePlot(mod, items = c(1,2,3), theta_range = c(-5,5), facet = F, legend = T)
 
 }
