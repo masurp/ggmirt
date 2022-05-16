@@ -49,7 +49,7 @@ personDist <- function(model,
   p <- person.params %>%
     pivot_longer(names(.), names_to = "dimension") %>%
     ggplot(aes(x = value, fill = dimension)) +
-    guides(fill = F)
+    guides(fill = "none")
   }
   
   if(isTRUE(density)) {

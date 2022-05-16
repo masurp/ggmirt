@@ -16,7 +16,6 @@
 #' @export
 #'
 #' @examples
-#' @examples
 #' library(mirt)
 #' library(ggmirt)
 #' data <- expand.table(LSAT7)

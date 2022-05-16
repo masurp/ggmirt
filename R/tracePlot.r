@@ -91,7 +91,7 @@ tracePlot <- function(model,
     scale_color_brewer(palette = 7)
   
   if(isFALSE(legend)) {
-   p <- p + guides(color = FALSE)
+   p <- p + guides(color = "none")
   }
     
   } else {
