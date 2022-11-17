@@ -64,6 +64,7 @@ itemInfoPlot <- function(model,
     
   if(isFALSE(legend)) {
     p <- p + guides(color = FALSE)
+    # change guides(color = "none")
   }
     
   } else {
