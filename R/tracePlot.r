@@ -45,7 +45,7 @@ tracePlot <- function(model,
   # Graded response model
   if(type[1] == "graded") {
     
-    trace <- probtrace(fitGraded, Theta = theta_range) %>%
+    trace <- probtrace(model, Theta = theta_range) %>%
       as_tibble %>%
       mutate(Theta = theta_range) %>%
       gather(key, value, -Theta) %>%
