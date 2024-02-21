@@ -49,7 +49,9 @@ itemInfoPlot <- function(model,
   test <- as.data.frame(test, theta) %>%
     tibble::rownames_to_column("theta") %>%
     gather(key, value, -theta) %>%
-    mutate(theta = as.numeric(theta))
+    mutate(theta = as.numeric(theta),
+           key = gsub(".", " ", key, fixed = T))
+  test$key <- factor(test$key, levels = c(paste('item', 1:length(unique(test$key)))))
   
   # final plot
   if(isFALSE(facet)) {

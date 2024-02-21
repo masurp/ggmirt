@@ -84,7 +84,7 @@ tracePlot <- function(model,
   
   item <- rep(names(trace), each = length(theta))
   d <- cbind.data.frame(theta, item, trace_df)
-  d$item <- as.factor(d$item)
+  d$item <- factor(d$item, levels = c(paste('item', 1:length(trace))))
   
   # final plot
   if(isFALSE(facet)) {
