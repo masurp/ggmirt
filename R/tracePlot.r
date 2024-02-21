@@ -57,8 +57,14 @@ tracePlot <- function(model,
       theme_minimal() +
       labs(x = expression(theta), 
            y = expression(P(theta)), 
-           title = title) +
-      scale_color_brewer(palette = 7)
+           title = title) 
+    
+    # in cases where there are max 9 items: use a specified color palette
+    if (length(unique(trace$var)) < 10) {
+      p <- p +
+        scale_color_brewer(palette = 7)
+    }
+    
     
   } else {
   
@@ -78,7 +84,7 @@ tracePlot <- function(model,
   
   item <- rep(names(trace), each = length(theta))
   d <- cbind.data.frame(theta, item, trace_df)
-  d$item <- as.factor(d$item)
+  d$item <- factor(d$item, levels = c(paste('item', 1:length(trace))))
   
   # final plot
   if(isFALSE(facet)) {
@@ -87,8 +93,13 @@ tracePlot <- function(model,
     labs(x = expression(theta), 
          y = expression(P(theta)), 
          title = title) +
-    theme_minimal() +
-    scale_color_brewer(palette = 7)
+    theme_minimal() 
+  
+  # in cases where there are max 9 items: use a specified color palette
+  if (length(unique(d$item)) < 10) {
+    p <- p +
+      scale_color_brewer(palette = 7)
+  }
   
   if(isFALSE(legend)) {
    p <- p + guides(color = "none")
