@@ -45,7 +45,6 @@ itemfitPlot <- function(model,
         gather(key, value, -item) %>%
         ggplot(aes(x = item, y = value)) +
         geom_point(size = 3, color = color, shape = shape) +
-        geom_line() +
         geom_hline(yintercept = .5, color = "darkgrey", linetype = "dashed") +
         geom_hline(yintercept = 1, color = "darkgrey") +
         geom_hline(yintercept = 1.5, color = "darkgrey", linetype = "dashed") +
