@@ -81,7 +81,7 @@ sim_irt <- function(n.obs = 100,
     m <- (cut < psolve) * 1
   }
   
-  d <- as_tibble(m)
+  d <- as_tibble(m, .name_repair = \(x) paste0("V", 1:n.items))
   
   return(d)
 }
