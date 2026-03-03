@@ -1,5 +1,25 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+# R build artefacts
+*.Rproj.user
+*.Rhistory
+*.RData
+*.Ruserdata
+
+# Package build output
+*.tar.gz
+*.zip
+
+# Compiled shared libraries
+*.so
+*.dll
+*.dylib
+
+# roxygen2 cache
+/doc/
+/Meta/
+
+# macOS
 .DS_Store
+**/.DS_Store
+
+# RStudio project user files
+.Rproj.user/

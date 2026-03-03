@@ -1,67 +1,70 @@
 #' Person parameter distribution
 #'
-#' This function requires a fitted mirt-model of class `SingleGroupClass` to visualize a person parameter distribution (theta levels in the studied population). The resulting ggplot can be further customized (e.g., with regard to theme, labels, etc.). It works with both uni- and multidimensional models.
-#' 
-#' @param model an object of class `SingleGroupClass` returned by the function `mirt()`. 
-#' @param density logical value indicating whether a smoothed density curve or a standard histogram should be plotted.
-#' @param bins number of bins to be plotted in the histogram
+#' Visualizes the distribution of estimated person ability (theta) parameters
+#' from a fitted mirt model. Works with both unidimensional and multidimensional
+#' models. For multidimensional models, dimensions are shown with separate fill
+#' colors.
+#'
+#' @param model an object of class `SingleGroupClass` returned by `mirt()`.
+#' @param theta_range numeric vector of length 2 specifying the x-axis range
+#'   (default: `c(-4, 4)`).
+#' @param density logical; if `TRUE`, a smoothed density curve is plotted
+#'   instead of a histogram (default: `FALSE`).
+#' @param bins integer; number of histogram bins (default: `35`). Ignored when
+#'   `density = TRUE`.
+#' @param title character string for the plot title.
 #'
 #' @return a ggplot object.
-#' @import ggplot2
-#' @import dplyr
-#' @import tidyr
-#' @import mirt
+#' @importFrom ggplot2 ggplot aes geom_density geom_histogram guides xlim
+#'   theme_minimal labs
+#' @importFrom dplyr everything
+#' @importFrom tidyr pivot_longer
 #' @export
 #'
 #' @examples
-#' # Loading packages
 #' library(mirt)
 #' library(ggmirt)
-#' 
-#' # Getting data
+#'
 #' data <- expand.table(LSAT7)
-#' 
-#' # Fitting a model 
-#' (mod <- mirt(data, 1))
-#' 
-#' # Simple plot
+#' mod <- mirt(data, 1)
+#'
 #' personDist(mod)
 #' personDist(mod, density = TRUE)
-#' 
-#' # Customized plot
 #' personDist(mod, theta_range = c(-3, 3), bins = 10) +
-#'   theme_classic()
-personDist <- function(model, 
+#'   ggplot2::theme_classic()
+#'
+personDist <- function(model,
                        theta_range = c(-4, 4),
                        density = FALSE,
-                       bins = 35) {
-  
-  person.params <- fscores(model, QMC = TRUE) %>%
-    as.data.frame() 
-  
-  if(length(person.params) != 1) {
-    p <- person.params %>%
-      tidyr::pivot_longer(names(.), names_to = "dimension") %>%
-      ggplot(aes(x = value, fill = dimension)) 
-      
-  } else {
-  
-  p <- person.params %>%
-    pivot_longer(names(.), names_to = "dimension") %>%
-    ggplot(aes(x = value, fill = dimension)) +
-    guides(fill = "none")
-  }
-  
-  if(isTRUE(density)) {
-    
-    p <- p + geom_density()
-    
-  } else {
-    
-    p <- p + geom_histogram(bins = bins, color = "white")
+                       bins = 35,
+                       title = "Person Parameter Distribution") {
+
+  person_params_raw <- mirt::fscores(model, QMC = TRUE)
+  multidim <- ncol(person_params_raw) > 1
+
+  person_params <- as.data.frame(person_params_raw) |>
+    tidyr::pivot_longer(
+      cols = dplyr::everything(),
+      names_to = "dimension",
+      values_to = "value"
+    )
+
+  p <- ggplot2::ggplot(person_params, ggplot2::aes(
+    x = .data[["value"]], fill = .data[["dimension"]]
+  ))
+
+  if (!multidim) {
+    p <- p + ggplot2::guides(fill = "none")
   }
 
-  
-  p + xlim(theta_range) + theme_minimal() + labs(x = expression(theta))
-  
+  if (isTRUE(density)) {
+    p <- p + ggplot2::geom_density()
+  } else {
+    p <- p + ggplot2::geom_histogram(bins = bins, color = "white")
+  }
+
+  p +
+    ggplot2::xlim(theta_range) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = expression(theta), title = title)
 }
