@@ -49,7 +49,9 @@ itemInfoPlot <- function(model,
   test <- as.data.frame(test, theta) %>%
     tibble::rownames_to_column("theta") %>%
     gather(key, value, -theta) %>%
-    mutate(theta = as.numeric(theta))
+    mutate(theta = as.numeric(theta),
+           key = gsub(".", " ", key, fixed = T))
+  test$key <- factor(test$key, levels = c(paste('item', 1:length(unique(test$key)))))
   
   # final plot
   if(isFALSE(facet)) {
@@ -59,8 +61,13 @@ itemInfoPlot <- function(model,
            y = expression(I(theta)), 
            title = title,
            color = "Item") +
-      theme_minimal() +
+      theme_minimal() 
+
+    # in cases where there are max 9 items: use a specified color palette
+    if (length(unique(test$key)) < 10) {
+      p <- p +
       scale_color_brewer(palette = 7)
+    }
     
   if(isFALSE(legend)) {
     p <- p + guides(color = FALSE)
